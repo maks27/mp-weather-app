@@ -29,9 +29,7 @@ const weatherView = () => {
     >
       {currentWeather && (
         <Fragment>
-          <View style={mainStyle.headerCard}>
             <ReloadButton />
-          </View>
           <View style={mainStyle.cardDetails}>
             <Text style={mainStyle.mainCityText}>{currentWeather.name}</Text>
             <Divider />

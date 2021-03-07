@@ -81,12 +81,6 @@ export const mainStyle = StyleSheet.create({
   descriptionText: {
     fontSize: 20,
   },
-  headerCard: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-  },
-
   textStyleTemp: {
     borderStyle: "solid",
     borderColor: "#e8e7e6",
