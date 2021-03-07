@@ -9,8 +9,8 @@ const ErrorView = () => {
     const { weatherStore } = useStore();
     return (
       <KeyboardAvoidingView
-      style={mainStyle.errorContent}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={mainStyle.errorContent}
     >
         <Text style={mainStyle.errorText}>{weatherStore.errorMessage}</Text>
         <Icon

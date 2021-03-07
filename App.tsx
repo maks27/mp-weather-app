@@ -27,23 +27,22 @@ function App() {
     <StoreContext.Provider value={store}>
       <ImageBackground
         source={
-          currentWeather &&
-          (currentWeather.main.temp > 20
-            ? hot
-            : currentWeather.main.temp > 10
-            ? cloud
-            : cold)
-        
+          currentWeather
+            ? currentWeather.main.temp > 20
+              ? hot
+              : currentWeather.main.temp > 10
+              ? cloud
+              : cold
+            : cloud
         }
         style={mainStyle.backgroundImage}
       >
-        <View style={mainStyle.container}>
-        <SearchView />
+        <View style={mainStyle.conteiner}>
+          <SearchView />
           {errorMessage.length > 0 ? (
             <ErrorView />
           ) : (
             <Fragment>
-            
               <WeatherView />
             </Fragment>
           )}

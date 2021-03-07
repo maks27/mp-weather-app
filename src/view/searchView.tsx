@@ -18,11 +18,12 @@ const SearchView: React.FC = () => {
   return (
     <Fragment>
       <View style={mainStyle.serachBarConteiner}>
-        <TextInput
+      <TextInput
           style={mainStyle.serachBar}
           placeholder="Wpisz miasto..."
           onChangeText={onChange}
           value={search}
+          
         />
         <Icon
           raised

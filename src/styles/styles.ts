@@ -1,39 +1,51 @@
 import { StyleSheet } from "react-native";
 
 export const mainStyle = StyleSheet.create({
-  container: {
+  backgroundImage: {
+    resizeMode: "cover",
+    justifyContent: "center",
+    backgroundColor: "#f2f2f2",
     flex: 1,
+  },
+  conteiner: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-  },
-  backgroundImage: {
     flex: 1,
-    resizeMode: "cover",
-    justifyContent: "center",
-    width: "100%",
-    height: "100%",
-    backgroundColor: "#f2f2f2",
   },
-
   loadingIndicator: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#f2f2f2",
   },
-
   serachBarConteiner: {
-    marginTop: "10%",
+    width: "90%",
+    backgroundColor: "rgba(214, 214, 214, 0.7)",
+    marginTop: "7%",
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    backgroundColor: "#f2eded",
     position: "relative",
     borderRadius: 100,
-    width: "90%",
     paddingRight: 5,
     paddingLeft: 5,
+  },
+  errorContent: {
+    padding:5,
+    alignItems: "center",
+    width: "90%",
+    marginTop: "5%",
+    borderRadius: 100,
+    backgroundColor: "rgba(214, 214, 214, 0.7)",
+  },
+  card: {
+    marginTop: "1%",
+    width: "90%",
+    backgroundColor: "rgba(214, 214, 214, 0.7)",
+    borderStyle: "solid",
+    borderColor: "#e8e7e6",
+    borderRadius: 5,
   },
   serachBar: {
     borderStyle: "solid",
@@ -85,7 +97,7 @@ export const mainStyle = StyleSheet.create({
     color: "orange",
   },
   textDetailsList: {
-    marginLeft:5,
+    marginLeft: 5,
     textAlign: "center",
     fontSize: 16,
     fontWeight: "bold",
@@ -96,16 +108,8 @@ export const mainStyle = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
   },
-  card: {
-    margin: 10,
-    backgroundColor: "rgba(214, 214, 214, 0.7)",
-    borderStyle: "solid",
-    borderColor: "#e8e7e6",
-    width: "90%",
-    borderRadius: 5,
-  },
+
   cardDetails: {
-    marginTop: 40,
     alignItems: "center",
   },
   modalConteiner: {
@@ -147,16 +151,7 @@ export const mainStyle = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 180,
   },
-  errorContent: {
-    padding: 15,
-    alignItems: "center",
-    width: "80%",
-    height: "50%",
-    marginTop: 100,
-    borderRadius: 100,
 
-    backgroundColor: "rgba(214, 214, 214, 0.7)",
-  },
   errorText: {
     margin: 20,
     fontSize: 20,

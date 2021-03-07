@@ -7,7 +7,6 @@ export const dateConverter = (date:string)=>{
 
 }
 export const showErrorView = (message:string) => {
-    console.log("elo")
     Alert.alert(
         'Błąd',
         `${message}`,

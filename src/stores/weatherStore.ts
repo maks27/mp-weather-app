@@ -31,15 +31,15 @@ export default class WeatherStore {
     try {
       let { status } = await Location.requestPermissionsAsync();
       if (status !== "granted") {
-        this.setError("Aby czerpać jak najwięcej z aplikacji pozwól jej na korzystanie z lokalizacji");
-        return
+        this.setError("Pozwól aplikacji na korzystanie z lokalizacji urządzenia.");
       }
       const location = await Location.getCurrentPositionAsync();
       const { latitude, longitude } = location.coords;
       this.loadCurrentWeather(latitude,longitude);
     } catch (error) {
-      this.setLoadingInitial(false);
-      this.setError("Sprawdź czy urządenie pozwala na użycie nawigacji");
+        if(this.errorMessage === "")
+           this.setError("Upewnij się czy lokalizacja urządzenia jest dostępna.");
+           this.setLoadingInitial(false);
     }
   };
 
@@ -53,12 +53,11 @@ export default class WeatherStore {
           this.icon = `https://openweathermap.org/img/wn/${response.weather[0].icon}@4x.png`;
           this.isLoaded = false;
         });
-        this.setLoadingInitial(false);
       } catch (error) {
+        this.setError("Błąd sprawdź połączenie internetowe");
+      } finally {
         this.setLoadingInitial(false);
-        this.setError("Bład sprawdź połączenie");
       }
-    
   };
   loadTypedWeather = async (cityName: string) => {
     this.setError("");
@@ -70,14 +69,12 @@ export default class WeatherStore {
           runInAction(()=>{
             this.currentWeather = result;
             this.icon = `https://openweathermap.org/img/wn/${result.weather[0].icon}@4x.png`;
-            this.setLoadingInitial(false);
           })
-            
         });
-
     } catch (error) {
+      showErrorView("Błąd w wyszukiwaniu spróbuj jeszcze raz !");
+    }finally{
       this.setLoadingInitial(false);
-      showErrorView("Błąd w wyszukiwaniu spróbuj jeszcze raz");
     }
   };
   loadLongTermWeather = async () => {
@@ -90,16 +87,16 @@ export default class WeatherStore {
           .then((result: ILongWeatherModel) => {
             this.longTermWeather.longTerm = result
             this.longTermWeather.current = this.currentWeather;
-            this.setLoadingInitial(false);
           });
         this.isLoaded = true;
       } catch (error) {
-        this.setLoadingInitial(false);
         this.setError("Błąd spróbuj jeszcze raz");
+      }finally{
+        this.setLoadingInitial(false);
       }
     } else {
       if (this.longTermWeather.longTerm!.city.name !== this.currentWeather!.name) {
-        this.isLoaded = false;
+        this.setLoadingInitial(false);
         this.loadLongTermWeather();
       }
     }
