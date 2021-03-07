@@ -7,11 +7,8 @@ import { observer } from "mobx-react-lite";
 import LoadingSpinner from "./src/view/additionals/loadingSpinner";
 import WeatherView from "./src/view/weatherView";
 import { store, StoreContext, useStore } from "./src/stores/store";
-//@ts-ignore
 import cloud from "./assets/medium.jpg";
-//@ts-ignore
 import cold from "./assets/cold.jpg";
-//@ts-ignore
 import hot from "./assets/hot.jpg";
 import ErrorView from "./src/view/errorView";
 function App() {
