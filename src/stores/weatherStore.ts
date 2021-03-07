@@ -61,7 +61,7 @@ export default class WeatherStore {
   };
   loadTypedWeather = async (cityName: string) => {
     this.setError("");
-    this.setLoadingInitial(true);
+    this.setLoadingInitial(true)
     try {
       await agent.weather
         .currentCityWeather(cityName)
@@ -69,6 +69,7 @@ export default class WeatherStore {
           runInAction(()=>{
             this.currentWeather = result;
             this.icon = `https://openweathermap.org/img/wn/${result.weather[0].icon}@4x.png`;
+            this.isLoaded = false;
           })
         });
     } catch (error) {
@@ -85,19 +86,16 @@ export default class WeatherStore {
         await agent.weather
           .longTerminWeather(this.currentWeather!.name)
           .then((result: ILongWeatherModel) => {
-            this.longTermWeather.longTerm = result
-            this.longTermWeather.current = this.currentWeather;
+            runInAction(()=>{
+              this.longTermWeather.longTerm = result
+              this.longTermWeather.current = this.currentWeather;
+              this.isLoaded = true;
+            })
           });
-        this.isLoaded = true;
       } catch (error) {
         this.setError("Błąd spróbuj jeszcze raz");
       }finally{
         this.setLoadingInitial(false);
-      }
-    } else {
-      if (this.longTermWeather.longTerm!.city.name !== this.currentWeather!.name) {
-        this.setLoadingInitial(false);
-        this.loadLongTermWeather();
       }
     }
   };
@@ -106,6 +104,8 @@ export default class WeatherStore {
     this.currentWeather = weather;
     this.icon = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`;
   };
+ 
+
   openModal = () => {
     this.isOpen = !this.isOpen;
   };
